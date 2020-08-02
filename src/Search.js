@@ -5,20 +5,25 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class Search extends Component {
+
   static propTypes = {
     books: PropTypes.array.isRequired,
   }
+
   state = {
     query: ''
   }
+
   updateQuery = (query) => {
     this.setState(() => ({
       query: query.trim()
     }))
   }
+
   clearQuery = () => {
     this.updateQuery('')
   }
+  
   render() {
     const { query } = this.state
     const { books } = this.props
