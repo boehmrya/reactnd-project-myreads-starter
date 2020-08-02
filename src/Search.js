@@ -76,4 +76,4 @@ class Search extends Component {
   }
 }
 
-export default ListContacts
+export default Search
