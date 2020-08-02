@@ -1,6 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import BookGrid from './BookGrid'
+import Search from './Search'
 import { Link } from 'react-router-dom'
 import './App.css'
 
@@ -41,40 +42,22 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         // route element for search page
+        <Route exact path='/' render={() => (
+          <Main books={this.state.books} />
+        )} />
 
         // route element for main page
+        <Route path='/search' render={({ history }) => (
+          <CreateContact
+            onCreateContact={(contact) => {
+              this.createContact(contact)
+              history.push('/')
+            }}
+          />
+        )} />
 
 
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <BookGrid books={this.currentlyReading} />
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <BookGrid books={this.wantToRead} />
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <BookGrid books={this.read} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="open-search">
-              <Link to='/search'>Add a book</Link>
-            </div>
-          </div>
+
         )}
       </div>
     )

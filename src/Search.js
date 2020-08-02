@@ -23,14 +23,16 @@ class Search extends Component {
   clearQuery = () => {
     this.updateQuery('')
   }
-  
+
   render() {
     const { query } = this.state
     const { books } = this.props
 
     const showingBooks = query === ''
       ? books
-      : BooksAPI.search(query)
+      : books.filter((b) => (
+          b.title.toLowerCase().includes(query.toLowerCase())
+        ))
 
     return (
       <div className="search-books">
