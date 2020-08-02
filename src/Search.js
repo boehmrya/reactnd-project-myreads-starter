@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import BookGrid from './BookGrid'
+import * as BooksAPI from './BooksAPI'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
