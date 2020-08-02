@@ -1,9 +1,12 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-import BookGrid from './BookGrid'
+import Main from './Main'
 import Search from './Search'
+import BookGrid from './BookGrid'
 import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import './App.css'
+
 
 class BooksApp extends React.Component {
 
@@ -34,10 +37,7 @@ class BooksApp extends React.Component {
   }
 
 
-  // helper function to filter books by category
-
   render() {
-
     return (
       <div className="app">
         // route element for search page
@@ -49,15 +49,11 @@ class BooksApp extends React.Component {
         )} />
 
         // route element for main page
-        <Route path='/search' render={({ history }) => (
+        <Route path='/search' render={() => (
           <Search
             onUpdateBook={this.updateBook}
           />
         )} />
-
-
-
-        )}
       </div>
     )
   }

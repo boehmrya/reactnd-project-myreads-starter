@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import BookGrid from './BookGrid'
+
 
 
 class BookGrid extends Component {
-
   render() {
-
     return (
       <ol className="books-grid">
         {this.props.books.map((book) => (

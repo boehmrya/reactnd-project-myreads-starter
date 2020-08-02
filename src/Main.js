@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import BookGrid from './BookGrid'
+import { Link } from 'react-router-dom'
 
 
 class Main extends Component {
-
   render() {
     const currentlyReading = this.props.books.filter((b) => (
         b.shelf === "currentlyReading"
