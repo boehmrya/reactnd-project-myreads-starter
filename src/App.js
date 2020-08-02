@@ -8,6 +8,7 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  // get all books
   componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
@@ -17,12 +18,16 @@ class BooksApp extends React.Component {
       })
   }
 
+  // update shelf when book is moved
+
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
+        // route element for search page
 
-        ) : (
+        // route element for main page
+
+
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>

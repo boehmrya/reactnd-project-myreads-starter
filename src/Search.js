@@ -29,7 +29,7 @@ class Search extends Component {
       <div className="search-books">
         <div className="search-books-bar">
         <Link
-          to='/create'
+          to='/'
           className='close-search'
         >Add Contact</Link>
         <div className="search-books-input-wrapper">
