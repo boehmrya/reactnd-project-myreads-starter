@@ -21,7 +21,17 @@ class BooksApp extends React.Component {
       })
   }
 
-  // update shelf when book is moved
+  // update the shelf of a book
+  updateBook = (book, shelf) => {
+    this.setState((currentState) => ({
+      books: currentState.books.map((b) => {
+        if (b.id === book.id) {
+          b.shelf = shelf
+        }
+      })
+    }))
+    BooksAPI.update(contact, shelf)
+  }
 
 
   // helper function to filter books by category
@@ -48,7 +58,7 @@ class BooksApp extends React.Component {
 
         // route element for main page
         <Route path='/search' render={({ history }) => (
-          <CreateContact
+          <Search
             onCreateContact={(contact) => {
               this.createContact(contact)
               history.push('/')
