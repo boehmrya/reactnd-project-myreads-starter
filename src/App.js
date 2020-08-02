@@ -1,5 +1,6 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
+import BookGrid from './BookGrid'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -19,6 +20,9 @@ class BooksApp extends React.Component {
   }
 
   // update shelf when book is moved
+
+
+  // helper function to filter books by category
 
   render() {
     return (

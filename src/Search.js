@@ -56,22 +56,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            {showingBooks.map((book) => (
-              <li key={contact.id} className='contact-list-item'>
-                <div
-                  className='contact-avatar'
-                  style={{
-                    backgroundImage: `url(${contact.avatarURL})`
-                  }}
-                ></div>
-                <div className='contact-details'>
-                  <p>{contact.name}</p>
-                  <p>{contact.handle}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <BookGrid books={this.showingBooks} />
         </div>
       </div>
     )
