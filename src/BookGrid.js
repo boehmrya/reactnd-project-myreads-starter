@@ -29,3 +29,5 @@ class BookGrid extends Component {
     )
   }
 }
+
+export default BookGrid
