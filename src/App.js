@@ -37,31 +37,26 @@ class BooksApp extends React.Component {
   // helper function to filter books by category
 
   render() {
-    const currentlyReading = books.filter((b) => (
-        b.shelf === 'currentlyReading'
-      ))
-
-    const wantToRead = books.filter((b) => (
-        b.shelf === 'wantToRead'
-      ))
-
-    const read = books.filter((b) => (
-        b.shelf === 'read'
-      ))
 
     return (
       <div className="app">
         // route element for search page
         <Route exact path='/' render={() => (
-          <Main books={this.state.books} />
+          <Main
+            books={this.state.books}
+            onUpdateBook={(book) => {
+              this.updateBook(book)
+            }}
+          />
         )} />
 
         // route element for main page
         <Route path='/search' render={({ history }) => (
           <Search
-            onCreateContact={(contact) => {
-              this.createContact(contact)
+            onUpdateBook={(book) => {
+              this.updateBook(book)
               history.push('/')
+
             }}
           />
         )} />
