@@ -2,8 +2,6 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import Main from './Main'
 import Search from './Search'
-import BookGrid from './BookGrid'
-import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import './App.css'
 
@@ -18,6 +16,7 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
+        console.log(books)
         this.setState(() => ({
           books
         }))
@@ -31,16 +30,16 @@ class BooksApp extends React.Component {
         if (b.id === book.id) {
           b.shelf = shelf
         }
+        return b
       })
     }))
-    BooksAPI.update(contact, shelf)
+    BooksAPI.update(book, shelf)
   }
 
 
   render() {
     return (
       <div className="app">
-        // route element for search page
         <Route exact path='/' render={() => (
           <Main
             books={this.state.books}
@@ -48,7 +47,6 @@ class BooksApp extends React.Component {
           />
         )} />
 
-        // route element for main page
         <Route path='/search' render={() => (
           <Search
             onUpdateBook={this.updateBook}
