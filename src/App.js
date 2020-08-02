@@ -25,6 +25,18 @@ class BooksApp extends React.Component {
   // helper function to filter books by category
 
   render() {
+    const currentlyReading = books.filter((b) => (
+        b.shelf === 'currentlyReading'
+      ))
+
+    const wantToRead = books.filter((b) => (
+        b.shelf === 'wantToRead'
+      ))
+
+    const read = books.filter((b) => (
+        b.shelf === 'read'
+      ))
+
     return (
       <div className="app">
         // route element for search page

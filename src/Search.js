@@ -56,7 +56,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <BookGrid books={this.showingBooks} />
+          <BookGrid books={showingBooks} />
         </div>
       </div>
     )
