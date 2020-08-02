@@ -44,20 +44,14 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <Main
             books={this.state.books}
-            onUpdateBook={(book) => {
-              this.updateBook(book)
-            }}
+            onUpdateBook={this.updateBook}
           />
         )} />
 
         // route element for main page
         <Route path='/search' render={({ history }) => (
           <Search
-            onUpdateBook={(book) => {
-              this.updateBook(book)
-              history.push('/')
-
-            }}
+            onUpdateBook={this.updateBook}
           />
         )} />
 

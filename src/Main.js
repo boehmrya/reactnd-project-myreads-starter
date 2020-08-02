@@ -5,6 +5,17 @@ import BookGrid from './BookGrid'
 class Main extends Component {
 
   render() {
+    const currentlyReading = this.props.books.filter((b) => (
+        b.shelf === "currentlyReading"
+      ))
+
+    const wantToRead = this.props.books.filter((b) => (
+        b.shelf === "wantToRead"
+      ))
+
+    const read = this.props.books.filter((b) => (
+        b.shelf === "read"
+      ))
 
     return (
       <div className="list-books">
@@ -16,19 +27,28 @@ class Main extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <BookGrid books={this.props.books} shelf="currentlyReading" />
+                <BookGrid
+                  books={currentlyReading}
+                  onUpdateBook={this.props.onUpdateBook}
+                />
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
-                <BookGrid books={this.props.books} shelf="wantToRead" />
+                <BookGrid
+                  books={wantToRead}
+                  onUpdateBook={this.props.onUpdateBook}
+                />
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <BookGrid books={this.props.books} shelf="read" />
+                <BookGrid
+                  books={read}
+                  onUpdateBook={this.props.onUpdateBook}
+                />
               </div>
             </div>
           </div>
