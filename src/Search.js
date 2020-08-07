@@ -6,10 +6,6 @@ import { Link } from 'react-router-dom'
 
 class Search extends Component {
 
-  static propTypes = {
-    books: PropTypes.array.isRequired,
-  }
-
   state = {
     query: ''
   }
