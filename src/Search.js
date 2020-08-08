@@ -7,12 +7,16 @@ import { Link } from 'react-router-dom'
 class Search extends Component {
 
   state = {
-    query: ''
+    query: '',
+    showingBooks: this.props.books
   }
 
   updateQuery = (query) => {
     this.setState(() => ({
-      query: query.trim()
+      query: query.trim(),
+      showingBooks: this.state.query === ''
+        ? this.state.books
+        : BooksAPI.search(this.state.query)
     }))
   }
 
@@ -24,9 +28,13 @@ class Search extends Component {
     const { query } = this.state
     const { books, onUpdateBook } = this.props
 
+    /*
     const showingBooks = query === ''
       ? books
       : BooksAPI.search(query)
+    */
+
+    console.log(this.state.showingBooks)
 
     return (
       <div className="search-books">
@@ -34,7 +42,7 @@ class Search extends Component {
           <Link
             to='/'
             className='close-search'
-          >Add Contact</Link>
+          ></Link>
           <div className="search-books-input-wrapper">
               {/*
                 NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -57,7 +65,7 @@ class Search extends Component {
           </div>
         <div className="search-books-results">
           <BookGrid
-            books={showingBooks}
+            books={this.state.showingBooks}
             onUpdateBook={this.props.onUpdateBook}
           />
         </div>
