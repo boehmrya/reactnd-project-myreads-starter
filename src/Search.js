@@ -8,16 +8,17 @@ class Search extends Component {
 
   state = {
     query: '',
-    showingBooks: this.props.books
+    showingBooks: []
   }
 
   updateQuery = (query, books) => {
-    this.setState(() => ({
-      query: query.trim(),
-      showingBooks: query === ''
-        ? books
-        : BooksAPI.search(query)
-    }))
+    BooksAPI.search(query.trim())
+      .then((books) => {
+        this.setState(() => ({
+          query: query.trim(),
+          showingBooks: books
+        }))
+    })
   }
 
   clearQuery = () => {
@@ -25,14 +26,8 @@ class Search extends Component {
   }
 
   render() {
-    const { query } = this.state
-    const { books, onUpdateBook } = this.props
 
-    /*
-    const showingBooks = query === ''
-      ? books
-      : BooksAPI.search(query)
-    */
+    console.log(this.state.showingBooks)
 
     return (
       <div className="search-books">
@@ -55,16 +50,16 @@ class Search extends Component {
                 className='search-books'
                 type='text'
                 placeholder='Search by title or author'
-                value={query}
-                onChange={(event) => this.updateQuery(event.target.value, books)}
+                value={this.state.query}
+                onChange={(event) => this.updateQuery(event.target.value, this.state.showingBooks)}
               />
 
             </div>
           </div>
         <div className="search-books-results">
           <BookGrid
-            books={books}
-            onUpdateBook={onUpdateBook}
+            books={this.state.showingBooks}
+            onUpdateBook={this.props.onUpdateBook}
           />
         </div>
       </div>
