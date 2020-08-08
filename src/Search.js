@@ -11,23 +11,28 @@ class Search extends Component {
     showingBooks: []
   }
 
-  updateQuery = (query, books) => {
-    BooksAPI.search(query.trim())
-      .then((books) => {
-        this.setState(() => ({
-          query: query.trim(),
-          showingBooks: books
-        }))
-    })
+  // get all books
+  componentDidUpdate() {
+    console.log(this.state)
+    if (this.state.query !== '') {
+      BooksAPI.search(this.state.query)
+        .then((books) => {
+          //console.log(books)
+          this.setState(() => ({
+            showingBooks: books
+          }))
+      })
+    }
   }
 
-  clearQuery = () => {
-    this.updateQuery('')
+  updateQuery = (query) => {
+    this.setState(() => ({
+      query: query
+    }))
   }
 
   render() {
-
-    console.log(this.state.showingBooks)
+    //console.log(this.state.showingBooks)
 
     return (
       <div className="search-books">
@@ -51,7 +56,7 @@ class Search extends Component {
                 type='text'
                 placeholder='Search by title or author'
                 value={this.state.query}
-                onChange={(event) => this.updateQuery(event.target.value, this.state.showingBooks)}
+                onChange={(event) => this.updateQuery(event.target.value)}
               />
 
             </div>
