@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class Search extends Component {
+  _isMounted = false;
 
   state = {
     query: '',
@@ -13,16 +14,31 @@ class Search extends Component {
 
   // get all books
   componentDidUpdate() {
-    console.log(this.state)
+    this._isMounted = true;
+
     if (this.state.query !== '') {
       BooksAPI.search(this.state.query)
         .then((books) => {
-          //console.log(books)
-          this.setState(() => ({
-            showingBooks: books
-          }))
-      })
+          if (this._isMounted) {
+            if (books.length > 0) {
+              this.setState(() => ({
+                showingBooks: books
+              }))
+            }
+          }
+        })
+        .catch((e) => {
+          if (this._isMounted) {
+            this.setState(() => ({
+              showingBooks: []
+            }))
+          }
+        });
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   updateQuery = (query) => {
