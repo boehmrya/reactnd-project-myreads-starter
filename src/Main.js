@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom'
 
 
 class Main extends Component {
+
+  // get all books
+  componentDidMount() {
+    this.props.getBooks()
+  }
+
   render() {
+
     const currentlyReading = this.props.books.filter((b) => (
         b.shelf === "currentlyReading"
       ))

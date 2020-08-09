@@ -12,8 +12,7 @@ class BooksApp extends React.Component {
     books: []
   }
 
-  // get all books
-  componentDidMount() {
+  getBooks = () => {
     BooksAPI.getAll()
       .then((books) => {
         this.setState(() => ({
@@ -42,6 +41,7 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <Main
             books={this.state.books}
+            getBooks={this.getBooks}
             onUpdateBook={this.updateBook}
           />
         )} />
