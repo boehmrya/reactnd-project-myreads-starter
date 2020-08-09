@@ -20,11 +20,13 @@ class Search extends Component {
       BooksAPI.search(this.state.query)
         .then((books) => {
           if (this._isMounted) {
+            let booksResults = []
             if (books.length > 0) {
-              this.setState(() => ({
-                showingBooks: books
-              }))
+              booksResults = books
             }
+            this.setState(() => ({
+              showingBooks: booksResults
+            }))
           }
         })
         .catch((e) => {
