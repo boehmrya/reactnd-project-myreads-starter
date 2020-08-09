@@ -15,6 +15,52 @@ function BookCover(props) {
 }
 
 
+function BookShelfChanger(props) {
+  const shelfTypes = [
+    {
+      value: "move",
+      text: "Move To..."
+    },
+    {
+      value: "currentlyReading",
+      text: "Currently Reading"
+    },
+    {
+      value: "wantToRead",
+      text: "Want To Read"
+    },
+    {
+      value: "read",
+      text: "Read"
+    },
+    {
+      value: "none",
+      text: "None"
+    }
+  ]
+
+  return (
+    <div className="book-shelf-changer">
+      <select onChange={(event) => props.onUpdateBook(props.book, event.target.value)}>
+        {shelfTypes.map((shelf) => {
+          let disabled = shelf.value === 'move' ? ' disabled' : ''
+          let selected = props.book.shelf === shelf.value ? ' selected' : ''
+          return (
+            <option
+              value={shelf.value}
+              disabled={disabled}
+              selected={selected}
+            >
+            {shelf.text}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
+}
+
+
 function BookTitle(props) {
   if (props.book.title) {
     return (
@@ -52,16 +98,7 @@ function BookGrid(props) {
             <div className="book">
               <div className="book-top">
                 <BookCover book={book} />
-
-                <div className="book-shelf-changer">
-                  <select onChange={(event) => props.onUpdateBook(book, event.target.value)}>
-                    <option value="move" disabled>Move to...</option>
-                    <option value="currentlyReading">Currently Reading</option>
-                    <option value="wantToRead">Want to Read</option>
-                    <option value="read">Read</option>
-                    <option value="none">None</option>
-                  </select>
-                </div>
+                <BookShelfChanger book={book} onUpdateBook={props.onUpdateBook} />
               </div>
 
               <BookTitle book={book} />
