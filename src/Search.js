@@ -12,19 +12,9 @@ class Search extends Component {
     showingBooks: []
   }
 
-  // update retrieved books from search function to match the shelf
-  // in books array from main component
-  updateBookShelf = (booksResults) => {
-    this.setState(() => ({
-      showingBooks: booksResults.map((b) => {
-        this.props.books.map((book) => {
-          if (b.id === book.id) {
-            b.shelf = book.shelf
-          }
-          return b
-        })
-      })
-    }))
+  // get all books
+  componentDidMount() {
+    this.props.getBooks()
   }
 
   // get all books
@@ -39,8 +29,10 @@ class Search extends Component {
             let booksResults = []
             if (books.length > 0) {
               booksResults = books
-              this.updateBookShelf(booksResults)
             }
+            this.setState(() => ({
+              showingBooks: booksResults
+            }))
           }
         })
         .catch((e) => {

@@ -41,15 +41,16 @@ function BookShelfChanger(props) {
 
   return (
     <div className="book-shelf-changer">
-      <select onChange={(event) => props.onUpdateBook(props.book, event.target.value)}>
+      <select
+        onChange={(event) => props.onUpdateBook(props.book, event.target.value)}
+        defaultValue={props.book.shelf}
+      >
         {shelfTypes.map((shelf) => {
-          let disabled = shelf.value === 'move' ? ' disabled' : ''
-          let selected = props.book.shelf === shelf.value ? ' selected' : ''
           return (
             <option
+              key={shelf.value}
               value={shelf.value}
-              disabled={disabled}
-              selected={selected}
+              disabled={shelf.value === 'move' ? 'disabled' : null}
             >
             {shelf.text}
             </option>
