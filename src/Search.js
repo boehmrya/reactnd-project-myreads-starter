@@ -12,6 +12,27 @@ class Search extends Component {
   }
 
   // get all books
+  componentDidMount() {
+    this.props.getBooks()
+  }
+
+  updateShelfData = (books) => {
+    let updatedBooks = []
+    for (let book of books) {
+      if (this.props.shelfIndex[book.id] != undefined) {
+        book.shelf = this.props.shelfIndex[book.id]
+        console.log(book.shelf)
+      }
+      else {
+        book.shelf = 'none'
+      }
+      updatedBooks.push(book)
+    }
+
+    return updatedBooks
+  }
+
+  // get all books
   componentDidUpdate() {
     this._isMounted = true;
 
@@ -19,12 +40,13 @@ class Search extends Component {
       BooksAPI.search(this.state.query)
         .then((books) => {
           if (this._isMounted) {
+            //console.log(this.updateShelfData(books))
             let booksResults = []
             if (books.length > 0) {
               booksResults = books
             }
             this.setState(() => ({
-              showingBooks: booksResults
+              showingBooks: this.updateShelfData(booksResults)
             }))
           }
         })
@@ -49,8 +71,8 @@ class Search extends Component {
   }
 
   render() {
-    console.log(this.props.books)
-    console.log(this.state.showingBooks)
+    //console.log(this.props.books)
+    //console.log(this.state.showingBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">
