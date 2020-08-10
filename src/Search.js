@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import BookGrid from './BookGrid'
 import * as BooksAPI from './BooksAPI'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class Search extends Component {
@@ -13,16 +12,10 @@ class Search extends Component {
   }
 
   // get all books
-  componentDidMount() {
-    this.props.getBooks()
-  }
-
-  // get all books
   componentDidUpdate() {
     this._isMounted = true;
 
     if (this.state.query !== '') {
-      console.log(this.state.showingBooks)
       BooksAPI.search(this.state.query)
         .then((books) => {
           if (this._isMounted) {
@@ -56,6 +49,8 @@ class Search extends Component {
   }
 
   render() {
+    console.log(this.props.books)
+    console.log(this.state.showingBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">

@@ -8,9 +8,7 @@ function BookCover(props) {
     );
   }
   else {
-    return (
-      ''
-    );
+    return '';
   }
 }
 
@@ -43,7 +41,7 @@ function BookShelfChanger(props) {
     <div className="book-shelf-changer">
       <select
         onChange={(event) => props.onUpdateBook(props.book, event.target.value)}
-        defaultValue={props.book.shelf}
+        defaultValue={props.book.shelf ? props.book.shelf : null}
       >
         {shelfTypes.map((shelf) => {
           return (
@@ -69,9 +67,7 @@ function BookTitle(props) {
     );
   }
   else {
-    return (
-      ''
-    );
+    return '';
   }
 }
 
@@ -83,9 +79,7 @@ function BookAuthors(props) {
     );
   }
   else {
-    return (
-      ''
-    );
+    return '';
   }
 }
 
@@ -101,7 +95,6 @@ function BookGrid(props) {
                 <BookCover book={book} />
                 <BookShelfChanger book={book} onUpdateBook={props.onUpdateBook} />
               </div>
-
               <BookTitle book={book} />
               <BookAuthors book={book} />
             </div>
@@ -111,9 +104,7 @@ function BookGrid(props) {
     )
   }
   else {
-    return (
-      ''
-    );
+    return '';
   }
 }
 

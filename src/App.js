@@ -9,14 +9,24 @@ import './App.css'
 class BooksApp extends React.Component {
 
   state = {
-    books: []
+    books: [],
+    shelfIndex: {}
   }
 
   getBooks = () => {
     BooksAPI.getAll()
       .then((books) => {
+        // create shelf index to add shelf data to search page
+        let shelfIndex = {}
+        for (var book of books) {
+          shelfIndex[book.id] = book.shelf
+        }
+
+        console.log(shelfIndex)
+
         this.setState(() => ({
-          books
+          books: books,
+          shelfIndex: shelfIndex
         }))
       })
   }
@@ -49,7 +59,7 @@ class BooksApp extends React.Component {
         <Route path='/search' render={() => (
           <Search
             books={this.state.books}
-            getBooks={this.getBooks}
+            shelfIndex={this.state.shelfIndex}
             onUpdateBook={this.updateBook}
           />
         )} />
