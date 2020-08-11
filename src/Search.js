@@ -26,9 +26,8 @@ class Search extends Component {
   updateShelfData = (books) => {
     let updatedBooks = []
     for (let book of books) {
-      if (this.props.shelfIndex[book.id] != undefined) {
+      if (this.props.shelfIndex[book.id] !== undefined) {
         book.shelf = this.props.shelfIndex[book.id]
-        console.log(book.shelf)
       }
       else {
         book.shelf = 'none'
