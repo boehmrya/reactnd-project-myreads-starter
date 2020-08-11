@@ -1,8 +1,10 @@
 # MyReads Project
 
+## Overview
+
 This project provides a way to do the following:
-1. Search for and add new books to a BookShelf.
-2. Categorize existing books into different shelves.
+1. Search for and add new books to a book case.
+2. Categorize existing books into different shelves within the book case.
 
 ## Installation and Launch
 

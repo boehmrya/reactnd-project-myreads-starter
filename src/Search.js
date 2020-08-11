@@ -11,11 +11,18 @@ class Search extends Component {
     showingBooks: []
   }
 
-  // get all books
+  // get all books with a designated shelf when
+  // the component initially mounts
   componentDidMount() {
     this.props.getBooks()
   }
 
+
+  /**
+    * @description updates shelf indices of books
+    * @param {array} books
+    * @returns {array} new books array with updates shelf indices
+  */
   updateShelfData = (books) => {
     let updatedBooks = []
     for (let book of books) {
@@ -32,7 +39,8 @@ class Search extends Component {
     return updatedBooks
   }
 
-  // get all books
+  // get all books from the search query
+  // and update showingBooks state variable
   componentDidUpdate() {
     this._isMounted = true;
 
@@ -40,7 +48,6 @@ class Search extends Component {
       BooksAPI.search(this.state.query)
         .then((books) => {
           if (this._isMounted) {
-            //console.log(this.updateShelfData(books))
             let booksResults = []
             if (books.length > 0) {
               booksResults = books
@@ -64,6 +71,8 @@ class Search extends Component {
     this._isMounted = false;
   }
 
+  // updates the state variable query, which triggers
+  // a search request when component mounts again
   updateQuery = (query) => {
     this.setState(() => ({
       query: query
@@ -71,8 +80,6 @@ class Search extends Component {
   }
 
   render() {
-    //console.log(this.props.books)
-    //console.log(this.state.showingBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">

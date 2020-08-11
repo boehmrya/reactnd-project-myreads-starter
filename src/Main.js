@@ -5,21 +5,23 @@ import { Link } from 'react-router-dom'
 
 class Main extends Component {
 
-  // get all books
+  // get all books when component initially mounts
   componentDidMount() {
     this.props.getBooks()
   }
 
   render() {
-
+    // books for currently reading shelf
     const currentlyReading = this.props.books.filter((b) => (
         b.shelf === "currentlyReading"
       ))
 
+    // books for the want to read shelf
     const wantToRead = this.props.books.filter((b) => (
         b.shelf === "wantToRead"
       ))
 
+    // books for the read shelf
     const read = this.props.books.filter((b) => (
         b.shelf === "read"
       ))

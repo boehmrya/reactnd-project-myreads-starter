@@ -12,7 +12,8 @@ function BookCover(props) {
   }
 }
 
-
+// updates the shelf of a book after
+// a new shelf has been selected
 function BookShelfChanger(props) {
   const shelfTypes = [
     {
