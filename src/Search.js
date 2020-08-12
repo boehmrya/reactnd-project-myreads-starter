@@ -43,26 +43,26 @@ class Search extends Component {
   componentDidUpdate() {
     this._isMounted = true;
 
-      BooksAPI.search(this.state.query)
-        .then((books) => {
-          if (this._isMounted) {
-            let booksResults = []
-            if (books.length > 0) {
-              booksResults = books
-            }
+    BooksAPI.search(this.state.query)
+      .then((books) => {
+        if (this._isMounted) {
+          let booksResults = []
+          if (books.length > 0) {
+            booksResults = books
+          }
 
-            this.setState(() => ({
-              showingBooks: this.updateShelfData(booksResults)
-            }))
-          }
-        })
-        .catch((e) => {
-          if (this._isMounted) {
-            this.setState(() => ({
-              showingBooks: []
-            }))
-          }
-        });
+          this.setState(() => ({
+            showingBooks: this.updateShelfData(booksResults)
+          }))
+        }
+      })
+      .catch((e) => {
+        if (this._isMounted) {
+          this.setState(() => ({
+            showingBooks: []
+          }))
+        }
+      });
   }
 
   componentWillUnmount() {
