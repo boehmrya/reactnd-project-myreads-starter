@@ -43,7 +43,6 @@ class Search extends Component {
   componentDidUpdate() {
     this._isMounted = true;
 
-    if (this.state.query !== '') {
       BooksAPI.search(this.state.query)
         .then((books) => {
           if (this._isMounted) {
@@ -51,6 +50,7 @@ class Search extends Component {
             if (books.length > 0) {
               booksResults = books
             }
+
             this.setState(() => ({
               showingBooks: this.updateShelfData(booksResults)
             }))
@@ -63,7 +63,6 @@ class Search extends Component {
             }))
           }
         });
-    }
   }
 
   componentWillUnmount() {
